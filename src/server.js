@@ -9,9 +9,9 @@ server
 .use(express.static('public'))
 //criar rota
 .set('views', path.join(__dirname, "views"))
-.set('views engine', 'hbs')
+.set('view engine', 'hbs')
 .get('/', (request, response) => {
-  return response.sendFile(path.join(__dirname, 'views', 'index.html'))
+  return response.render('index')
 })
 
 //ligar o servidor
