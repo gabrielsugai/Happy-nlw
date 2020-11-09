@@ -1,34 +1,30 @@
 const Database = require('./db');
+const saveOrphanage = require('./saveOrphanage')
 
 Database.then(async (db) => {
+  const exOrphanage =
+  {
+    lat: "-23.6705526",
+    lng: "-46.4425083",
+    name: "Lar de amor",
+    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    whatsapp: "123456789",
+    images: ["https://images.unsplash.com/photo-1601564267524-75b772c1aa7e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9", "https://images.unsplash.com/photo-1597095540293-b184e2b0d044?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9"].toString(),
+    instructions: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    opening_hours: "Horários de visitas das 18h até as 8h",
+    open_on_weekends: "0"
+  }
   //inserir dados na tabela
-  /*await db.run(`
-    INSERT INTO orphanages (
-      lat,
-      lng,
-      name,
-      about,
-      whatsapp,
-      images,
-      instructions,
-      opening_hours,
-      open_on_weekends
-    ) VALUES (
-      "-23.6705526",
-      "-46.4625083",
-      "Lar de cuidados",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "123456789",
-      "https://images.unsplash.com/photo-1601564267524-75b772c1aa7e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "Horários de visitas das 18h até as 8h",
-      "1"
-    );
-  `)*/
-  //consultar dados
-  // const selectedOrphanages = await db.all("SELECT * FROM orphanages");
-  // console.log(selectedOrphanages);
+  //await saveOrphanage(db, exOrphanage)
 
-  const orphanage = await db.all('SELECT * FROM orphanages WHERE id="1"')
-  console.log(orphanage)
+  //consultar dados
+  const selectedOrphanages = await db.all("SELECT * FROM orphanages");
+  console.log(selectedOrphanages);
+
+  //const orphanage = await db.all('SELECT * FROM orphanages WHERE id="1"')
+  //console.log(orphanage)
+
+  //deletar dado da tabela
+
+  await db.run('DELETE FROM orphanages WHERE id="4"')
 })
